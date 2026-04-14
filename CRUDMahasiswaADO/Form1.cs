@@ -267,6 +267,16 @@ namespace CRUDMahasiswaADO
             }
         }
 
+        private void ClearForm()
+        {
+            txtNIM.Clear();
+            txtNama.Clear();
+            cmbJK.SelectedIndex = -1;
+            dtpTanggalLahir.Value = DateTime.Now;
+            txtAlamat.Clear();
+            txtKodeProdi.Clear();
+        }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

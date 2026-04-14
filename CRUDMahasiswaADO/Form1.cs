@@ -224,26 +224,34 @@ namespace CRUDMahasiswaADO
                     MessageBoxButtons.YesNo, 
                     MessageBoxIcon.Question);
 
-                string query = "DELETE FROM Mahasiswa WHERE NIM = @NIM";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
-                int result = cmd.ExecuteNonQuery();
-                if (result > 0)
+                if (resultConfirm == DialogResult.Yes)
                 {
-                    MessageBox.Show("Data berhasil dihapus");
-                    ClearForm();
-                    btnLoad.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("Data tidak ditemukan");
+                    string query = "DELETE FROM Mahasiswa WHERE NIM = @NIM";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Data berhasil dihapus");
+                        ClearForm();
+                        btnLoad.PerformClick();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data tidak ditemukan");
+                    }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Terjadi kesalahan: " + ex.Message);
             }
         }
+
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
